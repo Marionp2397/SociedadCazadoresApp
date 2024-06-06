@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    </link>
+    <script src="index.js"></script>
+    <title>Sociedad de Cazadores</title>
+    <script>
+		 function redirigir() {
+            // Envía el formulario
+            document.querySelector(".AltaCazador").submit();
+            // Redirige a la página deseada después de un breve retraso
+            setTimeout(function() {
+                window.location.href = "Cazadores.html";
+            }, 0); // 500 milisegundos de retraso para asegurarse de que el formulario se envíe primero
+        }
+	</script>
+    <script>
+		 function redirigir() {
+            // Envía el formulario
+            document.querySelector(".AltaLicencia").submit();
+            // Redirige a la página deseada después de un breve retraso
+            setTimeout(function() {
+                window.location.href = "Cazadores.html";
+            }, 0); // 500 milisegundos de retraso para asegurarse de que el formulario se envíe primero
+        }
+	</script>
+    <script>
+	
+		
+			function llamada (url){
+				
+				
+				fetch(url)
+				.then(res =>res.json())
+				.then(res =>pintarResultados(res));
+				
+			}
+			function pintarResultados(datos){
+				
+				let html = "<table border=1>";
+					
+					for (var i=0;i<datos.length;i++){
+						
+						html += "<tr><td>"+datos[i].Nombre+"</td><td>"+datos[i].Apellidos+"</td><td>"+datos[i].DNI_Cazador+"</td><td>"+datos[i].correo+"</td><td>"+datos[i].Direccion+"</td><td>"+datos[i].Localidad+"</td></tr>"
+					}
+					
+					html += "</table>";
+					
+					document.getElementById("resultados").innerHTML = html;
+			}
+		
+		
+		
+		
+	</script>
+	 <script>
+		
+			function llamada1 (url){
+				
+				
+				fetch(url)
+				.then(res =>res.json())
+				.then(res =>pintarResultados1(res));
+				
+			}
+			function pintarResultados1(datos){
+				
+				let html = "<table border=1>";
+					
+					for (var i=0;i<datos.length;i++){
+						
+						html += "<tr><td>"+datos[i].Licencia_ID+"</td><td>"+datos[i].Fecha_Emision+"</td><td>"+datos[i].Num_Licencia+"</td><td>"+datos[i].Tipo_Licencia+"</td><td>"+datos[i].DNI_Cazador+"</td></tr>"
+					}
+					
+					html += "</table>";
+					
+					document.getElementById("resultados1").innerHTML = html;
+			}
+		
+		window.onload = function(){
+			llamada("ListarCazador");
+			llamada1("ListarLicencia");
+		}
+		
+	</script>
+	
+	
+</head>
+
+<body>
+                        <!--            Toda la parte del Header, Logos y nombre   -->
+    <header>
+    <div id="header">
+        <div id="logo">
+            <div id="Imagen2">
+                <a href="index.html">
+                    <img src="Imagenes/Imagen2.png">
+                </a>
+            </div>
+                 <div id="Nombre">
+                    <h1><br>Sociedad de Cazadores <br> Villarrubia de Santiago</h1>
+          
+                </div>
+            <div id="Perro">
+                <a href="index.html">
+                <img src="Imagenes/armas.png">
+               
+                </a>
+             </div>
+        </div>
+                         <!--            Parte Iconos Webs  -->
+        <div id="Iconos">
+			<div class="L">
+			 <a href="login.html">
+			<img src="Imagenes/rsz_1contrasena.png">
+			</a>
+			</div>
+            <div class="T">
+            <a href="http://www.x.com">
+            <img src="Imagenes/Twtitter.png">
+            </a>
+            </div>
+            <div class="G">
+            <a href="https://web.whatsapp.com/">
+             <img src="Imagenes/TF.png">   
+            </a>
+            </div>
+            <div class="GM">
+            <a href="https://www.google.com/intl/es/gmail/about/">
+            <img src="Imagenes/correo.png">    
+            </a>
+             </div>
+        </div>
+                          <!--            Menu             -->
+           <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="index.html">INICIO</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Conocenos</a>
+                        <ul class="mvertical">
+                            <li><a href="QSomos.html">Quienes Somos</a></li>
+                            <li><a href="DEstamos.html">Donde Estamos</a></li>
+                            <li><a href="Preguntas.html">Preguntas</a></li>
+                            <li><a href="Contacto.html">Contacto</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="index.html">Permisos</a> 
+                        <ul class="mvertical">
+                            <li><a href="TPermisos.html">Tipos de permiso</a></li>
+                            
+                    <li>
+                        <a href="Cazadores.html">Cazadores</a>
+                        
+                    </li>        
+
+
+                        </ul>   
+                    </li>
+                    <li>
+                        <a href="AltaUsuario.html">Usuarios</a>
+                        <ul class="mvertical">
+                            <li><a href="ListarUsuarios.html">Listas</a></li>
+                    </li>
+                </ul>       
+            </nav>               
+
+
+                
+
+
+
+            </div>
+        </div>
+      
+        
+    </header>
+    
+    
+    
+    
+       
+      <div class="FORMULARIO" style="display: flex;justify-content: center;">
+       
+       <form class="AltaCazador" style="text-align: right;margin-right: 150px;" action="GestionCazador" method="post" enctype="post">
+		   <h1>Formulario Alta Cazador</h1>
+		   <ul>
+			   <li><label>Nombre: </label> <input type="text" name="Nombre" required ></li>
+			   <li><label>Apellidos: </label> <input type="text" name="Apellidos" required></li>
+			    <li><label>DNI: </label><input type="text" name="DNI_Cazador" required></li>
+			   <li><label>correo: </label> <input type="text" name="correo" required></li>
+			   <li><label>Dirección: </label><input type="text" name="Direccion" required></li>
+			    <li><label>Localidad: </label><input type="text" name="Localidad" required></li>
+			   
+			      
+			<li>
+				<a href="index.html"></a><input type="submit" value="Guardar"> </a>
+				
+				</li>
+		   </ul>
+	   </form>
+	    
+	   <div class="Posicion">
+	    <form class="AltaLicencia" style="text-align: right; margin-left: auto;" action="GestionLicencia" method="post" enctype="post">
+		   <h1>Formulario Alta Licencia</h1>
+		   <ul>
+			   
+			
+			   <li><label>Fecha_Emision: </label> <input type="text" name="Fecha_Emision" required ></li>
+			    <li><label>Num_Licencia: </label> <input type="text" name="Num_Licencia" required ></li>
+			     <li><label>Tipo_Licencia: </label> <input type="text" name="Tipo_Licencia" required></li>
+			       <li><label>DNI: </label> <input type="text" name="DNI_Cazador" required ></li>
+			
+			<li><input type="submit" value="Guardar"></li>
+			
+		   </ul>
+		
+		   
+		   
+	   </form>
+	   </div>
+       </div>     
+       <h1>Lista Cazadores</h1><h1 style="text-align: center;margin-left: 500px;">Lista Licencias</h1>
+        <div class="LISTAS" style="display: flex;justify-content: center;margin-top: 10px;margin-left: 50px;">
+     		 
+     		 
+		     <div id=resultados style="margin-right: 250px;">
+			
+		
+	</div>
+				
+		<div id=resultados1 style="margin-right: 100px;">
+		
+		</div>
+	</div>
+     
+                                 <!--                FOOTER                   -->
+
+    <footer style="background-color: #228B22; color: #FFFFFF; padding: 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: auto;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <!-- About Section -->
+                <div style="flex: 1 1 200px; padding: 25px;">
+                    <h4>Sobre Nosotros</h4>
+                    <p>
+                        La Sociedad de Cazadores de Villarrubia de Santiago, 
+                        fundada en 1923, está dedicada a promover la caza sostenible y 
+                        la conservación del medio ambiente.
+                    </p>
+                </div>
+                
+                
+                <!--            Contacto Footer     -->
+                <div style="flex: 1 1 200px; padding: 10px;">
+                    <h4>Contacto</h4>
+                    <p>
+                        Calle Principal, 123<br>
+                        Villarrubia de Santiago, Toledo<br>
+                        Teléfono: +34 000 000 000<br>
+                        Correo: <a href="#" style="color: #FFA500;">info@sociedadcazadoresvillarrubia.com</a>
+                    </p>
+                </div>
+                
+            </div>
+           
+        </div>
+    </footer>
+
+</body>
+
+</html>

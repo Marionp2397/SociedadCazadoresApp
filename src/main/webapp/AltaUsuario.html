@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    </link>
+    <script src="Js/index.js"></script>
+    <title>Sociedad de Cazadores</title>
+    
+    <script type="text/javascript">
+		
+	function llamada(id,op){
+		fetch('GestionUsuario?id='+id+"&op="+op)
+		.then(response => response.json())
+		.then(data => pintarFormulario(data))
+	}
+		
+
+		
+		
+		function getParameterByName(name) {
+		    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		    results = regex.exec(location.search);
+		    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+		
+		function validarFormulario(){
+			   
+		    let nombre = document.getElementById('nombre').value;
+			let email = document.getElementById('mail').value;
+   		    let tel = document.getElementById('tel').value;
+
+			let ok = true;
+			if(nombre == ""){
+				ok = false;
+				document.getElementById('nombre').style.background = "red";
+			}
+			
+			if(email == ""){
+				ok = false;
+				document.getElementById('mail').style.background = "red";
+			}
+			
+			if(tel == ""){
+				ok = false;
+				document.getElementById('tel').style.background = "red";
+			}
+			
+			if(ok == true){
+				
+				document.getElementById("altas").submit();
+				
+			}
+				   
+		}
+		
+		
+		function pintarFormulario(datos){
+			document.getElementById("id").vale = datos.id;
+			document.getElementById("nombre").value = datos.nombre;
+			document.getElementById("mail").value = datos.mail;
+			document.getElementById("tel").value = datos.tel;
+			document.getElementById("permiso").value = datos.permiso;
+
+
+
+		}
+		
+		
+	
+		
+		
+		window.onload = function(){
+			let id = getParameterByName("id");
+			let op = getParameterByName("op");
+		
+			llamada(id,op);
+		}
+		
+		
+		
+	</script>
+</head>
+
+<body >
+     <!--            Toda la parte del Header, Logos y nombre   -->
+     <header>
+    <div id="header">
+        <div id="logo">
+            <div id="Imagen2">
+                <a href="index.html">
+                    <img src="Imagenes/Imagen2.png">
+                </a>
+            </div>
+                 <div id="Nombre">
+                    <h1><br>Sociedad de Cazadores <br> Villarrubia de Santiago</h1>
+          
+                </div>
+            <div id="Perro">
+                <a href="index.html">
+                <img src="Imagenes/armas.png">
+               
+                </a>
+             </div>
+        </div>
+     <!--            Parte Iconos Webs  -->
+
+
+        <div id="Iconos">
+			<div class="L">
+			 <a href="login.html">
+			<img src="Imagenes/rsz_1contrasena.png">
+			</a>
+			</div>
+            <div class="T">
+            <a href="http://www.x.com">
+            <img src="Imagenes/Twtitter.png">
+            </a>
+            </div>
+            <div class="G">
+            <a href="https://web.whatsapp.com/">
+             <img src="Imagenes/TF.png">   
+            </a>
+            </div>
+            <div class="GM">
+            <a href="https://www.google.com/intl/es/gmail/about/">
+            <img src="Imagenes/correo.png">    
+            </a>
+             </div>
+        </div>
+                 <!--            Menu             -->
+
+           <nav>
+                <ul class="menu">
+                    <li>
+                        <a href="index.html">INICIO</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Conocenos</a>
+                        <ul class="mvertical">
+                            <li><a href="QSomos.html">Quienes Somos</a></li>
+                            <li><a href="DEstamos.html">Donde Estamos</a></li>
+                            <li><a href="Preguntas.html">Preguntas</a></li>
+                            <li><a href="Contacto.html">Contacto</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="index.html">Permisos</a> 
+                        <ul class="mvertical">
+                            <li><a href="TPermisos.html">Tipos de permiso</a></li>
+                            
+                    <li>
+                        <a href="Cazadores.html">Cazadores</a>
+                        
+                    </li>        
+
+
+                        </ul>   
+                    </li>
+                    <li>
+                        <a href="AltaUsuario.html">Usuarios</a>
+                        <ul class="mvertical">
+                            <li><a href="ListarUsuarios.html">Listas</a></li>
+                    </li>
+                </ul>       
+            </nav>               
+
+
+                
+
+
+
+            </div>
+        </div>
+        
+    </header>
+                <!--           Login  -->
+                     
+
+           <h1 style="text-align: center;">Alta usuario</h1>
+		<form name="AltaUsuario" style="text-align: center;" action="GestionUsuario" method="post" id="altas">
+			
+			<ul>
+				
+			 	<input type="hidden" id="id" name="id" value="" >
+				<li><label>Nombre </label><input id="nombre" type="text" name="nombre"></li>
+				<li><label>mail </label><input id="mail" type="email" name="mail"></li>
+				<li><label>Telefono </label><input id="tel" type="text" name="tel"></li>
+				<li> <select name="permiso">
+					
+					<option value="0">...</option>
+					<option value="1">Usuario registrado</option>
+					<option value="9">Usuario administrador</option>
+
+				</select></li>
+				<li>
+					 
+					<input type="button" onclick="validarFormulario()" value="Enviar">
+					</li>
+			</ul>
+			
+			
+		</form>
+                    <!--                FOOTER                   -->
+
+             <footer style="background-color: #228B22; color: #FFFFFF; padding: 20px; text-align: center;">
+                <div style="max-width: 1200px; margin: auto;">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                        <!-- About Section -->
+                        <div style="flex: 1 1 200px; padding: 25px;">
+                            <h4>Sobre Nosotros</h4>
+                            <p>
+                                La Sociedad de Cazadores de Villarrubia de Santiago, 
+                                fundada en 1923, está dedicada a promover la caza sostenible y 
+                                la conservación del medio ambiente.
+                            </p>
+                        </div>
+                        
+                        
+                        <!--            Contacto Footer     -->
+                        <div style="flex: 1 1 200px; padding: 10px;">
+                            <h4>Contacto</h4>
+                            <p>
+                                Calle Principal, 123<br>
+                                Villarrubia de Santiago, Toledo<br>
+                                Teléfono: +34 000 000 000<br>
+                                Correo: <a href="#" style="color: #FFA500;">info@sociedadcazadoresvillarrubia.com</a>
+                            </p>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </footer>
+</body>
+
+</html>

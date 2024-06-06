@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Caza</title>
+    <script>
+		
+			function llamada1 (url){
+				
+				
+				fetch(url)
+				.then(res =>res.json())
+				.then(res =>pintarResultados1(res));
+				
+			}
+			function pintarResultados1(datos){
+				
+				let html = "<table border=1>";
+					
+					for (var i=0;i<datos.length;i++){
+						
+						html += "<tr><td>"+datos[i].Licencia_ID+"</td><td>"+datos[i].Fecha_Emision+"</td><td>"+datos[i].Num_Licencia+"</td><td>"+datos[i].Tipo_Licencia+"</td><td>"+datos[i].DNI_Cazador+"</td></tr>"
+					}
+					
+					html += "</table>";
+					
+					document.getElementById("resultados1").innerHTML = html;
+			}
+		
+		
+		window.onload = function(){
+			llamada1("ListarLicencia");
+		}
+		
+	</script>
+</head>
+<body>
+	<h1>Lista de Cazadores</h1>
+	<div id=resultados1>
+		
+		
+	</div>
+	
+</body>
+</html>
